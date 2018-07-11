@@ -1,3 +1,4 @@
+#!/usr/bin/php
 <?php
 // phpconfig.php will have database configuration settings
 require_once((dirname(__FILE__))."/phpconfig.php");
@@ -6,13 +7,12 @@ require_once((dirname(__FILE__))."/phpconfig.php");
 $lastbanfile="/etc/fail2ban/lastban";
 
 $lastban = file_get_contents($lastbanfile);
-
 // select only hosts banned after last check
-$sql = "select id, ip from ".$tablename." where id > $lastban";
-$result = mysql_query($sql) or die('Query failed: ' . mysql_error());
-mysql_close($link);
+$sql = "SELECT id,ip FROM .$tablename. WHERE id > $lastban";
+$result = mysqli_query($link,$sql) or die('Query failed: ' . mysqli_error($link));
+mysqli_close($link);
 
-while ($row = mysql_fetch_array($result)) {
+while ($row = mysqli_fetch_array($result)) {
         //
         $id = $row['id'];
         $ip = $row['ip'];

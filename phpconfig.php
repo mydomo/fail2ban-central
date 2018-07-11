@@ -1,3 +1,4 @@
+#!/usr/bin/php
 <?php
 // jail to be used
 $jail = "fail2ban-central";
