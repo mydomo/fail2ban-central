@@ -3,7 +3,7 @@
 // This must be added to Cronjob to run each 1 minute
 //Check the PHP path with the command "which php" in terminal
 
-// crontab -e
+// sudo crontab -e
 // */1 * * * * /usr/bin/php /home/domoticz/fail2ban-central/cron2ban.php
 
 // phpconfig.php will have database configuration settings
@@ -19,11 +19,12 @@ if ($lastban == "") { $lastban = 0; }
 
 // select only hosts banned after last check
 $sql = "SELECT * FROM `".$tablename."` WHERE `id` > ".$lastban;
-echo $sql;
+//echo $sql;
 $result = mysqli_query($link,$sql) or die('Query failed: ' . mysqli_error($link));
 mysqli_close($link);
 
-while ($row = mysqli_fetch_array($result)) {
+if (mysqli_num_rows($result) >= 1) {
+	while ($row = mysqli_fetch_array($result)) {
         //
         $id = $row['id'];
         $ip = $row['ip'];
@@ -35,4 +36,5 @@ while ($row = mysqli_fetch_array($result)) {
 
 // $id contains the last banned host, add it to the config file
 file_put_contents($lastbanfile, $id);
+	}
 ?>
