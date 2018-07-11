@@ -14,7 +14,7 @@ $ip = $_SERVER["argv"][4];
 $hostname = gethostname();
 
 
-$query = "INSERT INTO `".$tablename."`(`hostname`, `created`, `name`, `protocol`, `port`, `ip`) VALUES ([".addslashes($hostname)."],[NOW()],[".addslashes($name)."],[".addslashes($protocol)."],[".addslashes($port)."],[".addslashes($ip)."])";
+$query = "INSERT INTO `".$tablename."`(`hostname`, `created`, `name`, `protocol`, `port`, `ip`) VALUES ('".addslashes($hostname)."',NOW(),'".addslashes($name)."','".addslashes($protocol)."','".addslashes($port)."','".addslashes($ip)."')";
 
 if (mysqli_query($link, $query)) {
     echo "Ip to BAN added to DATABASE";
