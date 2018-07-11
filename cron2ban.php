@@ -7,6 +7,7 @@ require_once((dirname(__FILE__))."/phpconfig.php");
 $lastbanfile="/etc/fail2ban/lastban";
 
 $lastban = file_get_contents($lastbanfile);
+if ($lastban == "") { $lastban = 0; }
 // select only hosts banned after last check
 $sql = "SELECT id,ip FROM .$tablename. WHERE id > $lastban";
 $result = mysqli_query($link,$sql) or die('Query failed: ' . mysqli_error($link));
