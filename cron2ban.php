@@ -1,13 +1,22 @@
 #!/usr/bin/php
 <?php
+// This must be added to Cronjob to run each 1 minute
+//Check the PHP path with the command "which php" in terminal
+
+// crontab -e
+// */1 * * * * /usr/bin/php /home/domoticz/fail2ban-central/cron2ban.php
+
 // phpconfig.php will have database configuration settings
-require_once((dirname(__FILE__))."/phpconfig.php");
 
-// file with only a line, containing the last id banned
-$lastbanfile="/etc/fail2ban/lastban";
+require_once((dirname(__FILE__))."/config.php");
 
-$lastban = file_get_contents($lastbanfile);
+// file with only a line, containing the last id banned the path is present in the config file.
+$lastban = "";
+if (file_exists ($lastbanfile)) {
+	$lastban = file_get_contents($lastbanfile);
+	}
 if ($lastban == "") { $lastban = 0; }
+
 // select only hosts banned after last check
 $sql = "SELECT * FROM `".$tablename."` WHERE `id` > ".$lastban;
 echo $sql;

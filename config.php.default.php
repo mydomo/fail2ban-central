@@ -1,7 +1,16 @@
 #!/usr/bin/php
 <?php
+////////////////////////////////
+// DEFAULT CONFIGURATION FILE //
+// -------------------------- //
+//     CHANGE PARAMETERS      //
+//      AND SAVE IT AS:       //
+//        "config.php"        //
+////////////////////////////////
+
 // jail to be used
 $jail = "fail2ban-central";
+// you can use one of your jail or create a specific one
 
 // file to keep the last ban
 $lastbanfile="/etc/fail2ban/lastban";

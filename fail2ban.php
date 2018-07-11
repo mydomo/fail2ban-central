@@ -26,7 +26,7 @@ actionban = <iptables> -I f2b-<name> 1 -s <ip> -j <blocktype>
 */
 
 
-require_once((dirname(__FILE__))."/phpconfig.php");
+require_once((dirname(__FILE__))."/config.php");
 
 $name = $_SERVER["argv"][1];
 $protocol = $_SERVER["argv"][2];
