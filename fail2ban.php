@@ -18,7 +18,7 @@ $query = "INSERT INTO '".$tablename."' set hostname='" . addslashes($hostname) .
 if (mysqli_query($link, $query)) {
     echo "Ip to BAN added to DATABASE";
 } else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    echo "Error: " . $query . "<br>" . mysqli_error($link);
 }
 mysqli_close($link);
 exit;
